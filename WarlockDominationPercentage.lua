@@ -28,7 +28,7 @@ local function onUpdate(self, event, ...)
                 warlockPercentage = (numOnlineWarlocks / numOnlineMembers) * 100
             end
 
-            print("|cff8787eeWarlock Domination: " .. format("%.1f", warlockPercentage) .. "% (" .. format("%d/%d", numOnlineWarlocks, numOnlineMembers) .. ")|r")
+            print(string.format("|cff8787eeWarlock Domination: %.1f%% (%d/%d)|r", warlockPercentage, numOnlineWarlocks, numOnlineMembers))
             lastNumOnlineMembers = numOnlineMembers
         end
     end
