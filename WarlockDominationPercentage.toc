@@ -1,0 +1,6 @@
+## Interface: 90005
+## Title: Warlock Domination Percentage
+## Notes: Displays the percentage of Warlocks online in the guild.
+## Author: jwg
+## Version: 1.0
+WarlockDominationPercentage.lua
