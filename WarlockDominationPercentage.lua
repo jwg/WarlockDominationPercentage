@@ -23,10 +23,7 @@ local function onUpdate(self, event, ...)
         end
 
         if numOnlineMembers > 0 and numOnlineMembers ~= lastNumOnlineMembers then
-            local warlockPercentage = 0
-            if numOnlineMembers > 0 then
-                warlockPercentage = (numOnlineWarlocks / numOnlineMembers) * 100
-            end
+            local warlockPercentage = (numOnlineWarlocks / numOnlineMembers) * 100
 
             print(string.format("|cff8787eeWarlock Domination: %.1f%% (%d/%d)|r", warlockPercentage, numOnlineWarlocks, numOnlineMembers))
             lastNumOnlineMembers = numOnlineMembers
