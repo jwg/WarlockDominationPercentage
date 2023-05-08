@@ -4,8 +4,15 @@ frame:RegisterEvent("GUILD_ROSTER_UPDATE")
 
 -- Variables
 local lastNumOnlineMembers = 0
+local currentNumOnlineMembers = 0
+local currentNumOnlineWarlocks = 0
+local currentWarlockPercentage = 0
 
 -- Functions
+local function printWarlockDominationPercentage()
+    print(string.format("|cff8787eeWarlock Domination: %.1f%% (%d/%d)|r", currentWarlockPercentage, currentNumOnlineWarlocks, currentNumOnlineMembers))
+end
+
 local function onUpdate(self, event, ...)
     if event == "GUILD_ROSTER_UPDATE" then
         local numTotalMembers = GetNumGuildMembers()
@@ -23,9 +30,11 @@ local function onUpdate(self, event, ...)
         end
 
         if numOnlineMembers > 0 and numOnlineMembers ~= lastNumOnlineMembers then
-            local warlockPercentage = (numOnlineWarlocks / numOnlineMembers) * 100
+            currentWarlockPercentage = (numOnlineWarlocks / numOnlineMembers) * 100
+            currentNumOnlineMembers = numOnlineMembers
+            currentNumOnlineWarlocks = numOnlineWarlocks
 
-            print(string.format("|cff8787eeWarlock Domination: %.1f%% (%d/%d)|r", warlockPercentage, numOnlineWarlocks, numOnlineMembers))
+            printWarlockDominationPercentage()
             lastNumOnlineMembers = numOnlineMembers
         end
     end
@@ -34,4 +43,12 @@ end
 -- Event handling
 frame:SetScript("OnEvent", onUpdate)
 C_GuildInfo.GuildRoster()
+
+-- Slash Command
+local function handleSlashCommand(msg, editbox)
+    printWarlockDominationPercentage()
+end
+
+SLASH_WARLOCKDOMINATIONPERCENTAGE1 = "/wdp"
+SlashCmdList["WARLOCKDOMINATIONPERCENTAGE"] = handleSlashCommand
 
