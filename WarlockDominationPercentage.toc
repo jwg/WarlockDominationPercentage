@@ -1,4 +1,4 @@
-## Interface: 90005
+## Interface: 100100
 ## Title: Warlock Domination Percentage
 ## Notes: Displays the percentage of Warlocks online in the guild.
 ## Author: jwg
